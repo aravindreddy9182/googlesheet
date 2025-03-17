@@ -1,0 +1,215 @@
+:root {
+    --border-color: hsl(0, 12%, 94%);
+    --header-bg: #f3f3f3;
+    --toolbar-bg:rgb(133, 190, 143);
+    --active-cell: #e8f0fe;
+    --formula-bar-bg: #f9f9f9;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.toolbar {
+    background-color: var(--toolbar-bg);
+    border-bottom: 1px solid var(--border-color);
+    padding: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.toolbar-section {
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.toolbar button {
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+    margin-right: 4px;
+}
+
+.toolbar button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.toolbar select {
+    padding: 4px 8px;
+    margin-right: 4px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.formula-bar {
+    display: flex;
+    align-items: center;
+    padding: 4px 8px;
+    background-color: var(--formula-bar-bg);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cell-address {
+    width: 80px;
+    padding: 4px 8px;
+    border: 1px solid var(--border-color);
+    margin-right: 8px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.formula-input {
+    flex-grow: 1;
+    padding: 4px 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.spreadsheet {
+    flex-grow: 1;
+    overflow: auto;
+    position: relative;
+}
+
+.grid {
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.column-header, .row-header {
+    background-color: var(--header-bg);
+    text-align: center;
+    font-weight: normal;
+    user-select: none;
+}
+
+.column-header {
+    height: 25px;
+    min-width: 80px;
+    border: 1px solid var(--border-color);
+    position: relative;
+}
+
+.column-resize-handle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 5px;
+    height: 100%;
+    cursor: col-resize;
+}
+
+.row-header {
+    width: 40px;
+    min-height: 25px;
+    border: 1px solid var(--border-color);
+    position: relative;
+}
+
+.row-resize-handle {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 5px;
+    width: 100%;
+    cursor: row-resize;
+}
+
+.cell {
+    border: 1px solid var(--border-color);
+    padding: 4px;
+    min-width: 80px;
+    min-height: 25px;
+    white-space: nowrap;
+    overflow: hidden;
+    outline: none;
+}
+
+.cell.selected {
+    background-color: var(--active-cell);
+    position: relative;
+}
+
+.cell.selected::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 6px;
+    height: 6px;
+    background-color: #4285f4;
+    cursor: crosshair;
+}
+
+.cell.in-range {
+    background-color: #f1f3f4;
+}
+
+.dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.dialog h3 {
+    margin-top: 0;
+}
+
+.dialog-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 16px;
+}
+
+.dialog-buttons button {
+    margin-left: 8px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    background: white;
+    cursor: pointer;
+}
+
+.dialog-buttons button.primary {
+    background: #4285f4;
+    color: white;
+    border-color: #4285f4;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 999;
+}
+
+.hidden {
+    display: none;
+}
+
+#chartContainer {
+    width: 600px;
+    height: 400px;
+}
